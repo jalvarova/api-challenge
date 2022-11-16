@@ -13,19 +13,19 @@ curl -G https://start.spring.io/starter.zip -d dependencies=validation,devtools,
 unzip api-challenge.zip
 ```
 
-#### Build a local Docker image with the Dockerfile already created.
+#### Build a local Docker image with the Dockerfile already created. :gear:
 
 ```bash
 docker build --build-arg ARTIFACT_ID . -t api-challenge:1.0.0
 ```
 
-#### Run local docker image.
+#### Run local docker image. :vertical_traffic_light:
 
 ```bash
 docker run -d --name api-challenge -e PORT=9000 -e EUREKA_URI=http://ms-registry:8761 -e MS_CONFIG_SERVER=http://ms-config-properties:8088 -p 9000:9000 --network=microservice api-challenge:1.0.0
 ```
 
-#### Logs docker image.
+#### Logs docker image. :page_with_curl:
 
 ```bash
 docker logs -f api-challenge
@@ -34,22 +34,22 @@ docker logs -f api-challenge
 #### Create a local tag, to publish to the container registry
 
 ```bash
-docker tag api-challenge:1.0.0 gcr.io/[PROJECT ID]/api-challenge:1.0.0
+docker tag api-challenge:1.0.0 gcr.io/[PROJECT_ID]/api-challenge:1.0.0
 ```
 
-#### Push container repository tag GCP
+#### Push container repository tag GCP :rocket:
 
 ```bash
 docker push gcr.io/${PROJECT_ID}/api-challenge:1.0.0
 ```
 
-#### Create container docker compose
+#### Create container docker compose :airplane:
 
 ```bash
 docker-compose -f api-challenge.yml up -d
 ```
 
-#### Delete container docker compose
+#### Delete container docker compose :flying_saucer:
 
 ```bash
 docker-compose -f api-challenge.yml down
