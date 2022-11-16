@@ -1,0 +1,13 @@
+version: "3.3"
+services:
+  ms:
+    container_name: 'api-challenge'
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      PORT: 8080
+    ports:
+      - '9000:8080'
+networks:
+  default:

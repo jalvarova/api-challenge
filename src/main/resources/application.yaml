@@ -1,0 +1,32 @@
+server:
+  port: ${PORT:9000}
+---
+spring:
+  application:
+    name: api-challenge
+---
+management:
+  endpoint:
+    health:
+      show-components: ALWAYS
+    prometheus:
+      enabled: true
+    metrics:
+      enabled: true
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+  endpoints:
+    web:
+      base-path: /
+      path-mapping:
+        prometheus: /metrics
+      exposure:
+        include:
+          - actuator
+          - health
+          - info
+          - metrics
+          - prometheus
+        exclude:
