@@ -1,4 +1,4 @@
-# API
+# API Challenge :+1:
 
 ## INSTALL IMAGE LOCAL
 
@@ -54,3 +54,6 @@ docker-compose -f api-challenge.yml up -d
 ```bash
 docker-compose -f api-challenge.yml down
 ```
+
+
+## By Alvaro Aguinaga :peru:
