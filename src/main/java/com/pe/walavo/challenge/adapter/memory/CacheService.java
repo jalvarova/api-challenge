@@ -1,4 +1,4 @@
-package com.pe.walavo.challenge.adapter;
+package com.pe.walavo.challenge.adapter.memory;
 
 public interface CacheService<T> {
 

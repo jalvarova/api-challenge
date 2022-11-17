@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'com.pe.walavo'
-version = '1.0.0'
+version = '1.0.1'
 sourceCompatibility = '17'
 
 configurations {
@@ -22,14 +22,19 @@ dependencies {
 	implementation 'com.google.guava:guava:31.1-jre'
 
 	implementation 'org.springdoc:springdoc-openapi-webflux-ui:1.6.12'
-
+	implementation 'org.springframework.boot:spring-boot-starter-data-r2dbc'
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'org.springframework.boot:spring-boot-starter-webflux'
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
+	runtimeOnly 'io.r2dbc:r2dbc-postgresql:0.8.13.RELEASE'
+	runtimeOnly 'org.postgresql:postgresql'
 	annotationProcessor 'org.projectlombok:lombok'
+
+	testRuntimeOnly 'com.h2database:h2'
+	testRuntimeOnly 'io.r2dbc:r2dbc-h2'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'io.projectreactor:reactor-test'
 }

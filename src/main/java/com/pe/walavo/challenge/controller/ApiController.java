@@ -1,9 +1,14 @@
 package com.pe.walavo.challenge.controller;
 
+import com.pe.walavo.challenge.adapter.database.PlayerRepository;
+import com.pe.walavo.challenge.domain.Player;
+import com.pe.walavo.challenge.dto.ChampionDTO;
+import com.pe.walavo.challenge.dto.Request;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import javax.validation.constraints.Pattern;
@@ -18,16 +23,29 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @Validated
 public class ApiController {
 
-    @Operation(
-            description = "Retrieve attachments to a existing Ticket",
-            operationId = "getOperation",
-            tags = {"champions"}
-    )
-    @GetMapping(
-            value = "/challenge",
-            produces = APPLICATION_JSON_VALUE
-    )
-    public Mono<?> getOperation(@RequestParam("name") @Size(min = 1, max = 20) @Pattern(regexp = "^[a-zA-Z]*$") String name) {
+    private final PlayerRepository playerRepository;
+
+    @Operation(description = "Match of a championship players by participation championships", operationId = "getByPlayers", tags = {"championship"})
+    @GetMapping(value = "/challenge/championships/players", produces = APPLICATION_JSON_VALUE)
+    public Flux<Player> getByPlayers() {
+        return playerRepository.findAllPlayers();
+    }
+    @Operation(description = "Match of a championship players championships", operationId = "getMatchByPlayer", tags = {"championship"})
+    @GetMapping(value = "/challenge/championships/{name-match}/match", produces = APPLICATION_JSON_VALUE)
+    public Mono<?> getMatchByPlayer(@RequestParam("name-match") @Size(min = 1, max = 25) @Pattern(regexp = "^[a-zA-Z]*$") String match) {
+        return Mono.just("Hello World ".concat(match));
+    }
+
+
+    @Operation(description = "get championship by name", operationId = "getChampionship", tags = {"championship"})
+    @GetMapping(value = "/challenge/championships", produces = APPLICATION_JSON_VALUE)
+    public Mono<?> getChampionship(@RequestParam("championship") @Size(min = 1, max = 25) @Pattern(regexp = "^[a-zA-Z]*$") String name) {
         return Mono.just("Hello World ".concat(name));
+    }
+
+    @Operation(description = "Championship processed to get the winner", operationId = "processWinnerChampionships", tags = {"championship"})
+    @PostMapping(value = "/challenge/championships", produces = APPLICATION_JSON_VALUE)
+    public Mono<ChampionDTO> processWinnerChampionships(Request request) {
+        return Mono.just(ChampionDTO.builder().build());
     }
 }
