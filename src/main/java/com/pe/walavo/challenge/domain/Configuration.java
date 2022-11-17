@@ -10,30 +10,25 @@ import org.springframework.data.relational.core.mapping.Table;
 import java.time.LocalDateTime;
 
 @Data
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-@Table
-public class Match {
+@Table("configurations")
+public class Configuration {
 
     @Id
-    private String identifier;
+    private Long id;
 
-    private String nameMatch;
+    private String nameChampionship;
 
-    private Championship championship;
+    private Short amountMatch;
 
-    private Player playerOne;
+    private String type;
 
-    private Player playerTwo;
+    private Long firstAward;
 
-    private Player playerWinner;
+    private Long secondAward;
 
-    private String score;
+    private LocalDateTime dateChampionship;
 
-    private short phase;
-
-    private LocalDateTime startDate;
-
-    private LocalDateTime endDate;
 }

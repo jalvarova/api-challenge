@@ -13,7 +13,7 @@ import java.util.List;
 @Data
 public class Request {
 
-    private TYPE_CHAMPIONSHIP type_championship;
+    private TYPE_CHAMPIONSHIP typeChampionship;
 
     private List<PlayerDTO> players;
 

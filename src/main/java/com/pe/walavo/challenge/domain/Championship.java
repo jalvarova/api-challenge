@@ -18,15 +18,13 @@ import java.util.List;
 public class Championship {
 
     @Id
-    private String nameChampionship;
+    private String identifier;
 
-    private Player winner;
+    private Configuration configuration;
 
-    private Long awards;
+    private String country;
 
-    private Short amountMatch;
-
-    private String type;
+    private String watchTv;
 
     private List<Match> matches;
 

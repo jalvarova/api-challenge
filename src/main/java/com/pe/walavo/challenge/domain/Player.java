@@ -5,11 +5,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Table(value = "players")
 public class Player {
 
     @Id
@@ -21,7 +23,8 @@ public class Player {
 
     private Character gender;
 
-    private Integer age;
+    private String country;
 
+    private Integer age;
 
 }
