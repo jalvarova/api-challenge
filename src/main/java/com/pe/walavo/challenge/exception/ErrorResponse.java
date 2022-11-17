@@ -31,7 +31,7 @@ public class ErrorResponse {
 
     private HttpStatus status;
 
-    private String requestId = UUID.randomUUID().toString();
+    private String requestId;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSz", iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime time;

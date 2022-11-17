@@ -29,4 +29,13 @@ management:
           - info
           - metrics
           - prometheus
+          - openapi
+          - swagger-ui
         exclude:
+---
+spring-doc:
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    path: /api-docs
+  show-actuator: true

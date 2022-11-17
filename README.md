@@ -16,16 +16,16 @@ unzip api-challenge.zip
 #### Build a local Docker image with the Dockerfile already created. :gear:
 
 ```bash
-docker build --build-arg ARTIFACT_ID . -t api-challenge:1.0.0
+docker build --build-arg ARTIFACT_ID . -t api-challenge:${VERSION}
 ```
 
-#### Run local docker image. :vertical_traffic_light:
+#### Run local docker image :vertical_traffic_light:
 
 ```bash
-docker run -d --name api-challenge -e PORT=9000 -e EUREKA_URI=http://ms-registry:8761 -e MS_CONFIG_SERVER=http://ms-config-properties:8088 -p 9000:9000 --network=microservice api-challenge:1.0.0
+docker run -d --name api-challenge -e PORT=8080 -p 8080:8080 api-challenge:${VERSION}
 ```
 
-#### Logs docker image. :page_with_curl:
+#### Logs docker image :page_with_curl:
 
 ```bash
 docker logs -f api-challenge
@@ -34,16 +34,24 @@ docker logs -f api-challenge
 #### Create a local tag, to publish to the container registry
 
 ```bash
-docker tag api-challenge:1.0.0 gcr.io/[PROJECT_ID]/api-challenge:1.0.0
+docker tag api-challenge:${VERSION} gcr.io/${PROJECT_ID}/api-challenge:${VERSION}
 ```
 
-#### Push container repository tag GCP :rocket:
+gcloud auth configure-docker
+
+#### Push container repository tag GCP 
 
 ```bash
-docker push gcr.io/${PROJECT_ID}/api-challenge:1.0.0
+docker push gcr.io/${PROJECT_ID}/api-challenge:${VERSION}
 ```
 
-#### Create container docker compose :airplane:
+#### Deploy the service API in Cloud Run and verify the deployment in the GCP console. :rocket:
+
+```bash
+gcloud beta run deploy api-challenge --image gcr.io/wala-app-368815/api-challenge:1.0.0 --set-env-vars APP_PORT=8080 --platform managed --allow-unauthenticated --cpu=2 --memory=512Mi --region=us-central1
+```
+
+#### Create container docker compose local  :airplane:
 
 ```bash
 docker-compose -f api-challenge.yml up -d
@@ -55,5 +63,7 @@ docker-compose -f api-challenge.yml up -d
 docker-compose -f api-challenge.yml down
 ```
 
+
+https://api-challenge-o4pbdfca4a-uc.a.run.app/swagger-ui.html
 
 ## By Alvaro Aguinaga :peru:
