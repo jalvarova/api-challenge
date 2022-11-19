@@ -4,7 +4,9 @@ import com.pe.walavo.challenge.adapter.database.PlayerRepository;
 import com.pe.walavo.challenge.business.ChampionshipService;
 import com.pe.walavo.challenge.domain.Player;
 import com.pe.walavo.challenge.dto.ChampionDTO;
+import com.pe.walavo.challenge.dto.PlayerDTO;
 import com.pe.walavo.challenge.dto.Request;
+import com.pe.walavo.challenge.mapper.ConverterMapper;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
@@ -30,8 +32,8 @@ public class ApiController {
 
     @Operation(description = "Match of a championship players by participation championships", operationId = "getByPlayers", tags = {"championship"})
     @GetMapping(value = "/challenge/championships/players", produces = APPLICATION_JSON_VALUE)
-    public Flux<Player> getByPlayers() {
-        return playerRepository.findAllPlayers();
+    public Flux<PlayerDTO> getByPlayers() {
+        return playerRepository.findAllPlayers().map(ConverterMapper::entityToApi);
     }
 
     @Operation(description = "Match of a championship players championships", operationId = "getMatchByPlayer", tags = {"championship"})

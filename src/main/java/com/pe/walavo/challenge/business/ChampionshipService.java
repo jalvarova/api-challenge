@@ -5,8 +5,6 @@ import com.pe.walavo.challenge.adapter.database.ConfigurationRepository;
 import com.pe.walavo.challenge.adapter.database.MatchRepository;
 import com.pe.walavo.challenge.adapter.database.PlayerRepository;
 import com.pe.walavo.challenge.business.championship.ChampionshipProcessor;
-import com.pe.walavo.challenge.domain.Championship;
-import com.pe.walavo.challenge.domain.Configuration;
 import com.pe.walavo.challenge.dto.ChampionDTO;
 import com.pe.walavo.challenge.dto.Request;
 import com.pe.walavo.challenge.mapper.ConverterMapper;

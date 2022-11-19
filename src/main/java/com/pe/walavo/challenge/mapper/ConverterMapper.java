@@ -100,6 +100,19 @@ public final class ConverterMapper {
 
     }
 
+    public static PlayerDTO entityToApi(Player playerDTO) {
+        return PlayerDTO
+                .builder()
+                .document(playerDTO.getDocument())
+                .age(playerDTO.getAge())
+                .skill(playerDTO.getSkill())
+                .name(playerDTO.getName())
+                .country(playerDTO.getCountry())
+                .gender(playerDTO.getGender())
+                .build();
+
+    }
+
     public static List<Player> apiToEntityPlayers(Request participants) {
         return participants
                 .getPlayers()
