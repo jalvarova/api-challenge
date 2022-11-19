@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.domain.Persistable;
+import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDateTime;
@@ -13,27 +15,38 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Table
-public class Match {
+@Table("championship.matches")
+public class Match implements Persistable<String> {
 
     @Id
+    @Column("identifier")
     private String identifier;
 
     private String nameMatch;
 
-    private Championship championship;
+    private String championship;
 
-    private Player playerOne;
+    private String playerOne;
 
-    private Player playerTwo;
+    private String playerTwo;
 
-    private Player playerWinner;
+    private String playerWinner;
 
     private String score;
 
-    private short phase;
+    private Integer phase;
 
     private LocalDateTime startDate;
 
     private LocalDateTime endDate;
+
+    @Override
+    public String getId() {
+        return identifier;
+    }
+
+    @Override
+    public boolean isNew() {
+        return true;
+    }
 }

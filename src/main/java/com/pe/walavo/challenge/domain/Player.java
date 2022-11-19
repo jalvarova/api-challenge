@@ -5,14 +5,15 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.domain.Persistable;
 import org.springframework.data.relational.core.mapping.Table;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Table(value = "players")
-public class Player {
+@Table(value = "championship.players")
+public class Player implements Persistable<String> {
 
     @Id
     private String document;
@@ -27,4 +28,13 @@ public class Player {
 
     private Integer age;
 
+    @Override
+    public String getId() {
+        return document;
+    }
+
+    @Override
+    public boolean isNew() {
+        return true;
+    }
 }

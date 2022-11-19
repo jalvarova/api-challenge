@@ -1,5 +1,8 @@
 package com.pe.walavo.challenge.config;
 
+import com.pe.walavo.challenge.adapter.database.ChampionshipRepository;
+import com.pe.walavo.challenge.adapter.database.ConfigurationRepository;
+import com.pe.walavo.challenge.adapter.database.MatchRepository;
 import com.pe.walavo.challenge.adapter.database.PlayerRepository;
 import io.r2dbc.spi.ConnectionFactory;
 import lombok.extern.slf4j.Slf4j;
@@ -13,7 +16,10 @@ import org.springframework.r2dbc.connection.init.ResourceDatabasePopulator;
 
 @Configuration
 @EnableR2dbcRepositories(basePackageClasses = {
-        PlayerRepository.class
+        PlayerRepository.class,
+        MatchRepository.class,
+        ChampionshipRepository.class,
+        ConfigurationRepository.class
 })
 @Slf4j
 public class DatabaseConfig {

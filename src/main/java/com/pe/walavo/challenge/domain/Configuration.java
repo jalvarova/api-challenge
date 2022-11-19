@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDateTime;
@@ -13,21 +14,24 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table("configurations")
+@Table("championship.configurations")
 public class Configuration {
 
     @Id
+    @Column("configuration_id")
     private Long id;
 
-    private String nameChampionship;
+    private String name;
 
-    private Short amountMatch;
+    private String description;
+
+    private Integer amountMatch;
 
     private String type;
 
-    private Long firstAward;
+    private Double firstAward;
 
-    private Long secondAward;
+    private Double secondAward;
 
     private LocalDateTime dateChampionship;
 
