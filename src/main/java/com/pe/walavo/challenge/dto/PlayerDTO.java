@@ -1,5 +1,6 @@
 package com.pe.walavo.challenge.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,6 +15,7 @@ import javax.validation.constraints.Size;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class PlayerDTO {
 
     @Pattern(regexp = "[0-9]{8}")

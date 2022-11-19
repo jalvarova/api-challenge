@@ -1,8 +1,10 @@
 package com.pe.walavo.challenge.mapper;
 
 import com.pe.walavo.challenge.domain.Championship;
+import com.pe.walavo.challenge.domain.Configuration;
 import com.pe.walavo.challenge.domain.Match;
 import com.pe.walavo.challenge.domain.Player;
+import com.pe.walavo.challenge.dto.ChampionDTO;
 import com.pe.walavo.challenge.dto.PlayerDTO;
 import com.pe.walavo.challenge.dto.Request;
 
@@ -14,6 +16,30 @@ import static com.pe.walavo.challenge.util.Utility.identifier;
 
 public final class ConverterMapper {
 
+    public static ChampionDTO entityToApi(Configuration configuration, Championship championship, Player player) {
+        return ChampionDTO
+                .builder()
+                .championshipId(championship.getId())
+                .amountMatch(configuration.getAmountMatch())
+                .country(championship.getCountry())
+                .date(championship.getEndDate())
+                .watchTv(championship.getWatchTv())
+                .type(configuration.getType())
+                .firstAward(configuration.getFirstAward())
+                .secondAward(configuration.getSecondAward())
+                .name(configuration.getDescription())
+                .playerWinner(PlayerDTO
+                        .builder()
+                        .name(player.getName())
+                        .age(player.getAge())
+                        .country(player.getCountry())
+                        .skill(player.getSkill())
+                        .document(player.getDocument())
+                        .gender(player.getGender())
+                        .build())
+                .build();
+    }
+
     public static Match apiToEntityMatch(
             String playerOne, String playerTwo,
             String playerWinner, String championship,
@@ -24,6 +50,7 @@ public final class ConverterMapper {
                 .identifier(party.toString().concat("-").concat(phase.toString()).concat("-").concat(championship))
                 .phase(phase)
                 .nameMatch("Party ".concat(party.toString()))
+                .numberMatch(party)
                 .playerOne(playerOne)
                 .playerTwo(playerTwo)
                 .playerWinner(playerWinner)
@@ -72,5 +99,14 @@ public final class ConverterMapper {
                 .build();
 
     }
+
+    public static List<Player> apiToEntityPlayers(Request participants) {
+        return participants
+                .getPlayers()
+                .stream()
+                .map(ConverterMapper::apiToEntityPlayer)
+                .toList();
+    }
+
 
 }

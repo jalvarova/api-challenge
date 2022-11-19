@@ -18,16 +18,17 @@ import java.util.List;
 @JsonPropertyOrder({"name", "player", "amountMatch", "awards", "date"})
 public class ChampionDTO {
 
+    private String championshipId;
 
     private String name;
 
     private String type;
 
-    private Long firstAward;
+    private Double firstAward;
 
-    private Long secondAward;
+    private Double secondAward;
 
-    private Short amountMatch;
+    private Integer amountMatch;
 
     private String country;
 

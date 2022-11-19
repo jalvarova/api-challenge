@@ -22,6 +22,8 @@ public class Match implements Persistable<String> {
     @Column("identifier")
     private String identifier;
 
+    private Integer numberMatch;
+    
     private String nameMatch;
 
     private String championship;

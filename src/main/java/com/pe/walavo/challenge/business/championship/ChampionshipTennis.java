@@ -44,24 +44,12 @@ public class ChampionshipTennis implements ChampionshipProcessor {
     private final ChampionshipRepository championshipRepository;
 
     @Override
-    public void start(Request participants) {
+    public String start(Request participants) {
         TYPE_CHAMPIONSHIP type = participants.getTypeChampionship();
-
-        List<Player> players = participants
-                .getPlayers()
-                .stream()
-                .map(ConverterMapper::apiToEntityPlayer)
-                .toList();
-
-
+        List<Player> players = apiToEntityPlayers(participants);
         saveAll(players).subscribe();
         Championship championship = apiToEntityChampionship(participants);
-        championshipRepository.save(championship)
-                .flatMap(configuration -> configurationRepository.findByNameAndType(participants.getName(), type.getParam()))
-                .flux()
-                .map(Configuration::getAmountMatch)
-                .flatMap(integer -> playTourney(integer, participants, championship))
-                .subscribe();
+        return playTourney(players.size(), participants, championship);
     }
 
 
@@ -70,11 +58,10 @@ public class ChampionshipTennis implements ChampionshipProcessor {
         return playerRepository.saveAll(players);
     }
 
-    private Flux<?> playTourney(Integer countPlayers, Request participants, Championship championship) {
+    private String playTourney(Integer countPlayers, Request participants, Championship championship) {
         List<PlayerDTO> arrayListWinners = new ArrayList<>();
         List<PlayerDTO> playersList = participants.getPlayers();
-
-        return range(1, countPhase(countPlayers) - 1)
+        range(1, countPhase(countPlayers) - 1)
                 .map(phase -> {
                     arrayListWinners.clear();
                     setPhase(participants.getPlayers())
@@ -85,18 +72,21 @@ public class ChampionshipTennis implements ChampionshipProcessor {
                                 PlayerDTO playerDTOTwo = value.get(1);
                                 maleMatch.play(playerDTOOne, playerDTOTwo);
                                 PlayerDTO playerDtoWinner = maleMatch.winner();
+                                championship.setWinner(playerDtoWinner.getDocument());
                                 arrayListWinners.add(playerDtoWinner);
                                 String score = maleMatch.score();
                                 matchRepository.save(apiToEntityMatch(
-                                                playerDTOOne.getDocument(), playerDTOTwo.getDocument(),
-                                                playerDtoWinner.getDocument(), championship.getIdentifier(),
-                                                score, phase, key))
-                                        .subscribe(match -> log.info("Match " + match.toString()));
+                                        playerDTOOne.getDocument(), playerDTOTwo.getDocument(),
+                                        playerDtoWinner.getDocument(), championship.getIdentifier(),
+                                        score, phase, key)).subscribe(match -> log.info("Match " + match.toString()));
                             });
                     playersList.clear();
                     playersList.addAll(arrayListWinners);
-                    return false;
-                });
+                    return true;
+                }).subscribe();
 
+        championshipRepository.save(championship).subscribe();
+
+        return championship.getWinner();
     }
 }

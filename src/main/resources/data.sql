@@ -44,8 +44,9 @@ DROP TABLE IF EXISTS championship.championships CASCADE;
 CREATE TABLE IF NOT EXISTS championship.championships (
   identifier VARCHAR(100) NOT NULL,
   configuration_name VARCHAR(50) NOT NULL,
-  country VARCHAR(50),
-  watch_tv VARCHAR(50),
+  country VARCHAR(50) NULL,
+  watch_tv VARCHAR(50) NULL,
+  winner VARCHAR(10) NULL,
   start_date TIMESTAMP,
   end_date TIMESTAMP,
   CONSTRAINT pk_championships_identifier PRIMARY KEY (identifier)
@@ -55,6 +56,7 @@ DROP TABLE IF EXISTS championship.matches CASCADE;
 
 CREATE TABLE IF NOT EXISTS championship.matches (
   identifier VARCHAR(100) NOT NULL,
+  number_match INT NOT NULL,
   name_match VARCHAR(100) NOT NULL,
   championship VARCHAR(100) NOT NULL,
   player_one VARCHAR(10) NOT NULL,

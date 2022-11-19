@@ -27,6 +27,8 @@ public class Championship implements Persistable<String> {
 
     private String watchTv;
 
+    private String winner;
+
     private LocalDateTime startDate;
 
     private LocalDateTime endDate;
