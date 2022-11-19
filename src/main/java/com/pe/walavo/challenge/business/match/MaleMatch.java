@@ -1,6 +1,5 @@
 package com.pe.walavo.challenge.business.match;
 
-import com.pe.walavo.challenge.business.player.FemaleCapacity;
 import com.pe.walavo.challenge.business.player.MaleCapacity;
 import com.pe.walavo.challenge.dto.PlayerDTO;
 import lombok.extern.slf4j.Slf4j;

@@ -5,6 +5,7 @@ import com.pe.walavo.challenge.domain.Configuration;
 import com.pe.walavo.challenge.domain.Match;
 import com.pe.walavo.challenge.domain.Player;
 import com.pe.walavo.challenge.dto.ChampionDTO;
+import com.pe.walavo.challenge.dto.MatchDTO;
 import com.pe.walavo.challenge.dto.PlayerDTO;
 import com.pe.walavo.challenge.dto.Request;
 
@@ -12,11 +13,12 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.pe.walavo.challenge.util.Utility.PARTY;
 import static com.pe.walavo.challenge.util.Utility.identifier;
 
 public final class ConverterMapper {
 
-    public static ChampionDTO entityToApi(Configuration configuration, Championship championship, Player player) {
+    public static ChampionDTO entityToApiChampion(Configuration configuration, Championship championship, Player player) {
         return ChampionDTO
                 .builder()
                 .championshipId(championship.getId())
@@ -47,9 +49,9 @@ public final class ConverterMapper {
 
         return Match
                 .builder()
-                .identifier(party.toString().concat("-").concat(phase.toString()).concat("-").concat(championship))
+                .identifier(identifier(party.toString(), phase.toString(), championship))
                 .phase(phase)
-                .nameMatch("Party ".concat(party.toString()))
+                .nameMatch(PARTY.concat(party.toString()))
                 .numberMatch(party)
                 .playerOne(playerOne)
                 .playerTwo(playerTwo)
@@ -67,10 +69,26 @@ public final class ConverterMapper {
                 .builder()
                 .country(participants.getCountry())
                 .watchTv(participants.getWatchTv())
-                .identifier(identifier(participants))
+                .identifier(participants.getIdentifier())
                 .configurationName(participants.getName())
                 .startDate(LocalDateTime.now())
                 .endDate(LocalDateTime.now().plusDays(10))
+                .build();
+
+    }
+
+    public static MatchDTO entityToApi(Player playerOne, Player playerTwo, Player playerWinner, Match match) {
+        return MatchDTO
+                .builder()
+                .numberMatch(match.getNumberMatch())
+                .nameMatch(match.getChampionship())
+                .playerOne(entityToApi(playerOne))
+                .playerTwo(entityToApi(playerTwo))
+                .playerWinner(entityToApi(playerWinner))
+                .score(match.getScore())
+                .phase("Fase ".concat(match.getPhase().toString()))
+                .startDate(match.getStartDate())
+                .endDate(match.getEndDate())
                 .build();
 
     }

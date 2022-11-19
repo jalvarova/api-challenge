@@ -1,12 +1,12 @@
 package com.pe.walavo.challenge.dto;
 
-public enum TYPE_CHAMPIONSHIP {
+public enum ChampionshipType {
     MALE("M"),
     FEMALE("F");
 
     private final String param;
 
-    TYPE_CHAMPIONSHIP(String param) {
+    ChampionshipType(String param) {
         this.param = param;
     }
 

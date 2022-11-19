@@ -6,28 +6,24 @@ import com.pe.walavo.challenge.adapter.database.MatchRepository;
 import com.pe.walavo.challenge.adapter.database.PlayerRepository;
 import com.pe.walavo.challenge.business.match.MaleMatch;
 import com.pe.walavo.challenge.domain.Championship;
-import com.pe.walavo.challenge.domain.Configuration;
 import com.pe.walavo.challenge.domain.Player;
+import com.pe.walavo.challenge.dto.ChampionshipType;
 import com.pe.walavo.challenge.dto.PlayerDTO;
 import com.pe.walavo.challenge.dto.Request;
-import com.pe.walavo.challenge.dto.TYPE_CHAMPIONSHIP;
-import com.pe.walavo.challenge.mapper.ConverterMapper;
 import lombok.AllArgsConstructor;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-
-import static com.pe.walavo.challenge.mapper.ConverterMapper.*;
-import static com.pe.walavo.challenge.util.Utility.countPhase;
-import static reactor.core.publisher.Flux.zip;
-import static reactor.core.publisher.Flux.range;
-
 import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static com.pe.walavo.challenge.mapper.ConverterMapper.*;
+import static com.pe.walavo.challenge.util.Utility.countPhase;
+import static reactor.core.publisher.Flux.range;
 
 @Component
 @AllArgsConstructor
@@ -45,20 +41,22 @@ public class ChampionshipTennis implements ChampionshipProcessor {
 
     @Override
     public String start(Request participants) {
-        TYPE_CHAMPIONSHIP type = participants.getTypeChampionship();
+        ChampionshipType type = participants.getTypeChampionship();
         List<Player> players = apiToEntityPlayers(participants);
-        saveAll(players).subscribe();
+        saveAll(players).subscribe(o -> log.info("Player " + o.toString()));
         Championship championship = apiToEntityChampionship(participants);
         return playTourney(players.size(), participants, championship);
     }
 
-
     @Transactional
     private Flux<?> saveAll(List<Player> players) {
-        return playerRepository.saveAll(players);
+        return Flux.fromIterable(players)
+                .flatMap(player -> playerRepository.findById(player.getDocument()))
+                .switchIfEmpty(playerRepository.saveAll(players));
     }
 
-    private String playTourney(Integer countPlayers, Request participants, Championship championship) {
+    @SneakyThrows
+    private String playTourney(Integer countPlayers, Request participants, Championship championship)  {
         List<PlayerDTO> arrayListWinners = new ArrayList<>();
         List<PlayerDTO> playersList = participants.getPlayers();
         range(1, countPhase(countPlayers) - 1)
@@ -83,10 +81,11 @@ public class ChampionshipTennis implements ChampionshipProcessor {
                     playersList.clear();
                     playersList.addAll(arrayListWinners);
                     return true;
-                }).subscribe();
+                }).subscribe(o -> log.info("Validate " + o.toString()));
 
-        championshipRepository.save(championship).subscribe();
+        championshipRepository.save(championship).subscribe(o -> log.info("Championship " + o.toString()));
 
+        Thread.sleep(150);
         return championship.getWinner();
     }
 }

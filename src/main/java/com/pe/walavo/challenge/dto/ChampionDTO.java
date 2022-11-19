@@ -1,21 +1,18 @@
 package com.pe.walavo.challenge.dto;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.pe.walavo.challenge.domain.Match;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.Pattern;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Data
-@JsonPropertyOrder({"name", "player", "amountMatch", "awards", "date"})
+@JsonPropertyOrder({"championshipId", "name", "type", "firstAward", "secondAward", "amountMatch", "country", "watchTv", "date", "playerWinner"})
 public class ChampionDTO {
 
     private String championshipId;
