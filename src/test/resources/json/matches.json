@@ -1,0 +1,65 @@
+[
+  {
+    "championship": "atp-world-tour-M-b94624a8-b975-48c1-b811-966c6c0ab471",
+    "playerOne": "47012903",
+    "playerTwo": "47081903",
+    "playerWinner": "47081903",
+    "score": "6-3",
+    "numberMatch": 2,
+    "phase": 2
+  },
+  {
+    "championship": "atp-world-tour-M-b94624a8-b975-48c1-b811-966c6c0ab471",
+    "playerOne": "47082905",
+    "playerTwo": "47082983",
+    "playerWinner": "47082905",
+    "score": "5-1",
+    "numberMatch": 1,
+    "phase": 2
+  },
+  {
+    "championship": "atp-world-tour-M-b94624a8-b975-48c1-b811-966c6c0ab471",
+    "playerOne": "47012903",
+    "playerTwo": "47242903",
+    "playerWinner": "47012903",
+    "score": "6-2",
+    "numberMatch": 1,
+    "phase": 1
+  },
+  {
+    "championship": "atp-world-tour-M-b94624a8-b975-48c1-b811-966c6c0ab471",
+    "playerOne": "47082983",
+    "playerTwo": "47082904",
+    "playerWinner": "47082983",
+    "score": "6-3",
+    "numberMatch": 4,
+    "phase": 1
+  },
+  {
+    "championship": "atp-world-tour-M-b94624a8-b975-48c1-b811-966c6c0ab471",
+    "playerOne": "47082603",
+    "playerTwo": "47081903",
+    "playerWinner": "47081903",
+    "score": "6-3",
+    "numberMatch": 2,
+    "phase": 1
+  },
+  {
+    "championship": "atp-world-tour-M-b94624a8-b975-48c1-b811-966c6c0ab471",
+    "playerOne": "47082905",
+    "playerTwo": "47082901",
+    "playerWinner": "47082905",
+    "score": "5-1",
+    "numberMatch": 3,
+    "phase": 1
+  },
+  {
+    "championship": "atp-world-tour-M-b94624a8-b975-48c1-b811-966c6c0ab471",
+    "playerOne": "47082905",
+    "playerTwo": "47081903",
+    "playerWinner": "47081903",
+    "score": "6-3",
+    "numberMatch": 1,
+    "phase": 3
+  }
+]

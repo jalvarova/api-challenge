@@ -1,0 +1,18 @@
+{
+  "championshipId": "atp-world-tour-M-31d6fac5-c031-4a38-aa1b-b1b09c84f62f",
+  "name": "ATP World Tour 2022",
+  "type": "M",
+  "firstAward": 17000.0,
+  "secondAward": 15000.0,
+  "amountMatch": 8,
+  "country": "Peru",
+  "watchTv": "Direct TV",
+  "playerWinner": {
+    "document": "47082603",
+    "name": "Carlos Aguinaga",
+    "skill": 85,
+    "gender": "M",
+    "country": "Peru",
+    "age": 41
+  }
+}

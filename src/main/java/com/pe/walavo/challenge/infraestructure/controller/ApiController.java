@@ -11,6 +11,8 @@ import reactor.core.publisher.Mono;
 
 import javax.validation.constraints.Size;
 
+import java.util.Comparator;
+
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
@@ -31,7 +33,8 @@ public class ApiController {
     @Operation(description = "Match of a championship players championships", operationId = "getMatchByPlayer", tags = {"championship"})
     @GetMapping(value = "/challenge/championships/{championshipName}/matches", produces = APPLICATION_JSON_VALUE)
     public Mono<?> getMatchesByChampionship(@PathVariable("championshipName") @Size(min = 1, max = 100) String championshipName) {
-        return championshipService.matches(championshipName);
+        return championshipService.matches(championshipName).sort(Comparator.comparing(MatchDTO::getPhase))
+                .collectMultimap(MatchDTO::getPhase);
     }
 
     @Operation(description = "Get championship by name", operationId = "getChampionship", tags = {"championship"})

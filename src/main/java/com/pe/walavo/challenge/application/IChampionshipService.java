@@ -11,7 +11,7 @@ public interface IChampionshipService {
 
     Flux<ChampionDTO> searchParam(SearchChampionsDTO searchParam);
 
-    Mono<?> matches(String championship);
+    Flux<MatchDTO> matches(String championship);
 
     Flux<PlayerDTO> players();
 }

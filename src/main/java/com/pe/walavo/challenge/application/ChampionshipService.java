@@ -11,8 +11,6 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.util.Comparator;
-
 import static com.pe.walavo.challenge.mapper.ConverterMapper.entityToApi;
 import static com.pe.walavo.challenge.mapper.ConverterMapper.entityToApiChampion;
 import static com.pe.walavo.challenge.util.Utility.identifier;
@@ -65,16 +63,15 @@ public class ChampionshipService implements IChampionshipService {
     }
 
     @Override
-    public Mono<?> matches(String championship) {
+    public Flux<MatchDTO> matches(String championship) {
         return championshipAccessDomain
                 .findByChampionship(championship)
                 .flatMap(match -> Flux.zip(
                                 championshipAccessDomain.findPlayerById(match.getPlayerOne()),
                                 championshipAccessDomain.findPlayerById(match.getPlayerTwo()),
                                 championshipAccessDomain.findPlayerById(match.getPlayerWinner()))
-                        .map(o -> entityToApi(o.getT1(), o.getT2(), o.getT3(), match)))
-                .sort(Comparator.comparing(MatchDTO::getPhase))
-                .collectMultimap(MatchDTO::getPhase);
+                        .map(o -> entityToApi(o.getT1(), o.getT2(), o.getT3(), match)));
+
     }
 
     @Override
