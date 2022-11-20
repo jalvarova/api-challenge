@@ -4,6 +4,7 @@ import com.pe.walavo.challenge.infraestructure.dto.PlayerDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.apache.commons.lang3.RandomUtils;
 
 @Data
 @NoArgsConstructor
@@ -13,8 +14,8 @@ public class MaleCapacity implements CapacityPlayer {
 
     @Override
     public void measureCapacity() {
-        player.setSkill((player.getSkill() +
+        player.setSkill(((player.getSkill() +
                 player.getSpeed() +
-                player.getStrength()) / 3);
+                player.getStrength()) / 3) / RandomUtils.nextInt(1, 10));
     }
 }

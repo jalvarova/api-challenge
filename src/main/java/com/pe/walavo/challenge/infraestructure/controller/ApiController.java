@@ -1,10 +1,7 @@
 package com.pe.walavo.challenge.infraestructure.controller;
 
 import com.pe.walavo.challenge.application.ChampionshipService;
-import com.pe.walavo.challenge.infraestructure.dto.ChampionDTO;
-import com.pe.walavo.challenge.infraestructure.dto.ChampionshipType;
-import com.pe.walavo.challenge.infraestructure.dto.PlayerDTO;
-import com.pe.walavo.challenge.infraestructure.dto.Request;
+import com.pe.walavo.challenge.infraestructure.dto.*;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
@@ -38,11 +35,15 @@ public class ApiController {
     }
 
     @Operation(description = "Get championship by name", operationId = "getChampionship", tags = {"championship"})
-    @GetMapping(value = "/challenge/championships", produces = APPLICATION_JSON_VALUE)
-    public Mono<?> getChampionship(@RequestParam("championship") @Size(min = 1, max = 100) String name,
-                                   @RequestParam("config") String config,
-                                   @RequestParam("type") ChampionshipType type) {
-        return championshipService.getChampionship(name, config, type);
+    @GetMapping(value = "/challenge/championships/search", produces = APPLICATION_JSON_VALUE)
+    public Flux<ChampionDTO> getChampionshipSearch(SearchChampionsDTO searchChampionsDTO) {
+        return championshipService.searchParam(searchChampionsDTO);
+    }
+
+    @Operation(description = "Get championship by name", operationId = "getChampionship", tags = {"championship"})
+    @GetMapping(value = "/challenge/championships/{championship}", produces = APPLICATION_JSON_VALUE)
+    public Mono<?> getChampionship(@PathVariable("championship") @Size(min = 1, max = 100) String name) {
+        return championshipService.getChampionship(name);
     }
 
     @Operation(description = "Championship processed to get the winner", operationId = "processWinnerChampionships", tags = {"championship"})

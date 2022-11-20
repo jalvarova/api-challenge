@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.domain.Persistable;
+import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDateTime;
@@ -20,7 +21,11 @@ public class Championship implements Persistable<String> {
     @Id
     private String identifier;
 
-    private String configurationName;
+    @Column("configuration_name")
+    private String name;
+
+    @Column("configuration_type")
+    private String type;
 
     private String country;
 

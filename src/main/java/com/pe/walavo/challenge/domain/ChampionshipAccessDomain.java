@@ -4,10 +4,11 @@ import com.pe.walavo.challenge.domain.model.Championship;
 import com.pe.walavo.challenge.domain.model.Configuration;
 import com.pe.walavo.challenge.domain.model.Match;
 import com.pe.walavo.challenge.domain.model.Player;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.data.domain.Pageable;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface ChampionshipAccessDomain {
@@ -26,8 +27,13 @@ public interface ChampionshipAccessDomain {
 
     Mono<Championship> save(Championship championship);
 
-    Flux<Championship> findAllChampionshipById(String identifier);
+    Flux<Championship> findAllChampionshipByName(String identifier);
+
     Mono<Championship> findChampionshipById(String identifier);
+
+    Flux<Championship> findChampionshipSearch(String identifier, String type,
+                                              LocalDateTime from, LocalDateTime to,
+                                              Pageable pageable);
 
     Flux<?> saveAllPlayersValidate(List<Player> players);
 }

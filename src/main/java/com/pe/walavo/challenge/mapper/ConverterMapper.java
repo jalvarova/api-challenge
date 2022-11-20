@@ -70,7 +70,8 @@ public final class ConverterMapper {
                 .country(participants.getCountry())
                 .watchTv(participants.getWatchTv())
                 .identifier(participants.getIdentifier())
-                .configurationName(participants.getName())
+                .name(participants.getName())
+                .type(participants.getTypeChampionship().getParam())
                 .startDate(LocalDateTime.now())
                 .endDate(LocalDateTime.now().plusDays(10))
                 .build();

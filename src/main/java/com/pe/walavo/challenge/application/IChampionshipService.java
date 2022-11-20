@@ -1,16 +1,15 @@
 package com.pe.walavo.challenge.application;
 
-import com.pe.walavo.challenge.infraestructure.dto.ChampionDTO;
-import com.pe.walavo.challenge.infraestructure.dto.ChampionshipType;
-import com.pe.walavo.challenge.infraestructure.dto.PlayerDTO;
-import com.pe.walavo.challenge.infraestructure.dto.Request;
+import com.pe.walavo.challenge.infraestructure.dto.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 public interface IChampionshipService {
     Mono<ChampionDTO> process(Request request) throws InterruptedException;
 
-    Mono<?> getChampionship(String championship, String config, ChampionshipType typeChampionship);
+    Mono<?> getChampionship(String name);
+
+    Flux<ChampionDTO> searchParam(SearchChampionsDTO searchParam);
 
     Mono<?> matches(String championship);
 

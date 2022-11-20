@@ -10,17 +10,18 @@ import com.pe.walavo.challenge.domain.repository.ConfigurationRepository;
 import com.pe.walavo.challenge.domain.repository.MatchRepository;
 import com.pe.walavo.challenge.domain.repository.PlayerRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RequiredArgsConstructor
 @Component
 public class ChampionshipDataAccess implements ChampionshipAccessDomain {
-
 
     private final ChampionshipRepository championshipRepository;
 
@@ -74,14 +75,23 @@ public class ChampionshipDataAccess implements ChampionshipAccessDomain {
 
     @Transactional(readOnly = true)
     @Override
-    public Flux<Championship> findAllChampionshipById(String identifier) {
-        return championshipRepository.findByConfigurationName(identifier);
+    public Flux<Championship> findAllChampionshipByName(String identifier) {
+        return championshipRepository.findByName(identifier);
     }
 
     @Transactional(readOnly = true)
     @Override
     public Mono<Championship> findChampionshipById(String identifier) {
         return championshipRepository.findById(identifier);
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public Flux<Championship> findChampionshipSearch(String identifier, String type,
+                                                     LocalDateTime from, LocalDateTime to, Pageable pageable) {
+        return championshipRepository
+                .findAllByNameOrType(identifier, type, pageable)
+                .switchIfEmpty(championshipRepository.findAllBy(pageable));
     }
 
     @Transactional

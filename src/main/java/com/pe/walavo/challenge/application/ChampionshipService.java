@@ -5,6 +5,8 @@ import com.pe.walavo.challenge.domain.ChampionshipAccessDomain;
 import com.pe.walavo.challenge.infraestructure.dto.*;
 import com.pe.walavo.challenge.mapper.ConverterMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -38,11 +40,27 @@ public class ChampionshipService implements IChampionshipService {
     }
 
     @Override
-    public Mono<ChampionDTO> getChampionship(String championship, String config, ChampionshipType typeChampionship) {
-        return Mono.zip(championshipAccessDomain.findChampionshipById(championship),
-                        championshipAccessDomain.findByNameAndType(config, typeChampionship.getParam()))
-                .flatMap(o -> championshipAccessDomain.findPlayerById(o.getT1().getWinner())
-                        .map(player -> ConverterMapper.entityToApiChampion(o.getT2(), o.getT1(), player)));
+    public Mono<ChampionDTO> getChampionship(String name) {
+        return championshipAccessDomain
+                .findChampionshipById(name)
+                .flatMap(championship -> Mono.zip(
+                                championshipAccessDomain.findByNameAndType(
+                                        championship.getName(),
+                                        championship.getType()),
+                                championshipAccessDomain.findPlayerById(championship.getWinner()))
+                        .map(o -> ConverterMapper.entityToApiChampion(o.getT1(), championship, o.getT2())));
+    }
+
+    public Flux<ChampionDTO> searchParam(SearchChampionsDTO searchParam) {
+        Pageable pageable = PageRequest.of(searchParam.getPage(), searchParam.getLimit());
+        return championshipAccessDomain.findChampionshipSearch(searchParam.getName(), searchParam.getType(),
+                        searchParam.getFrom(), searchParam.getTo(), pageable)
+                .flatMap(championship -> Flux.zip(
+                                championshipAccessDomain.findByNameAndType(
+                                        championship.getName(),
+                                        championship.getType()),
+                                championshipAccessDomain.findPlayerById(championship.getWinner()))
+                        .map(o -> ConverterMapper.entityToApiChampion(o.getT1(), championship, o.getT2())));
 
     }
 
