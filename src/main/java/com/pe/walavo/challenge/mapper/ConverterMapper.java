@@ -1,13 +1,13 @@
 package com.pe.walavo.challenge.mapper;
 
-import com.pe.walavo.challenge.domain.Championship;
-import com.pe.walavo.challenge.domain.Configuration;
-import com.pe.walavo.challenge.domain.Match;
-import com.pe.walavo.challenge.domain.Player;
-import com.pe.walavo.challenge.dto.ChampionDTO;
-import com.pe.walavo.challenge.dto.MatchDTO;
-import com.pe.walavo.challenge.dto.PlayerDTO;
-import com.pe.walavo.challenge.dto.Request;
+import com.pe.walavo.challenge.domain.model.Championship;
+import com.pe.walavo.challenge.domain.model.Configuration;
+import com.pe.walavo.challenge.domain.model.Match;
+import com.pe.walavo.challenge.domain.model.Player;
+import com.pe.walavo.challenge.infraestructure.dto.ChampionDTO;
+import com.pe.walavo.challenge.infraestructure.dto.MatchDTO;
+import com.pe.walavo.challenge.infraestructure.dto.PlayerDTO;
+import com.pe.walavo.challenge.infraestructure.dto.Request;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

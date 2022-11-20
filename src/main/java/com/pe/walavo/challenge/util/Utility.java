@@ -1,6 +1,6 @@
 package com.pe.walavo.challenge.util;
 
-import com.pe.walavo.challenge.dto.Request;
+import com.pe.walavo.challenge.infraestructure.dto.Request;
 
 import java.util.UUID;
 
