@@ -45,9 +45,9 @@ spring:
     generate-ddl: true
     show-sql: true
   r2dbc:
-    url: r2dbc:postgres://localhost:7432/championship?useSSL=false&serverTimezone=America/Lima
-    username: wala
-    password: 12345
+    url: r2dbc:postgres://${HOST:localhost:7432}/championship?useSSL=false&serverTimezone=America/Lima
+    username: ${USER:wala}
+    password: ${PASSWORD:12345}
     pool:
       initial-size: 1
       max-idle-time: 30s
