@@ -37,9 +37,9 @@ public class OpenApiConfig {
                         .description("SpringShop Wiki Documentation")
                         .url("https://springshop.wiki.github.org/docs"))
                 .servers(List.of(
+                        new Server().url("https://api-challenge-o4pbdfca4a-uc.a.run.app"),
                         new Server().url("http://localhost:9000"),
-                        new Server().url("http://localhost:9001"),
-                        new Server().url("https://api-challenge-o4pbdfca4a-uc.a.run.app")));
+                        new Server().url("http://localhost:9001")));
     }
 
 }
