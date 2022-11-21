@@ -25,11 +25,40 @@ docker build --build-arg ARTIFACT_ID . -t api-challenge:${VERSION}
 docker run -d --name api-challenge -e PORT=8080 -p 8080:8080 api-challenge:${VERSION}
 ```
 
+### Or
+
+### Create container docker compose local  :airplane:
+
+```bash
+docker-compose -f api-challenge.yml up -d
+```
+
+### Delete container docker compose :flying_saucer:
+
+```bash
+docker-compose -f api-challenge.yml down
+```
+
 ### Logs docker image :page_with_curl:
 
 ```bash
 docker logs -f api-challenge
 ```
+
+---------
+
+## Deployment API in Cloud Run
+
+### Install Gcloud
+
+````bash
+sudo apt-get install google-cloud-cli-app-engine-java
+````
+
+### Login account gcloud compute
+````shell
+gcloud auth login
+````
 
 ### Create a local tag, to publish to the container registry
 
@@ -55,22 +84,27 @@ docker push gcr.io/${PROJECT_ID}/api-challenge:${VERSION}
 gcloud beta run deploy api-challenge --project ${PROJECT_ID} --image gcr.io/${PROJECT_ID}/api-challenge:${VERSION} --set-env-vars APP_PORT=8080 --platform managed --allow-unauthenticated --cpu=2 --memory=512Mi --region=us-central1
 ```
 
-### Create container docker compose local  :airplane:
-
-```bash
-docker-compose -f api-challenge.yml up -d
-```
-
-### Delete container docker compose :flying_saucer:
-
-```bash
-docker-compose -f api-challenge.yml down
-```
-
 ### OpenAPI Docs Microservice :memo:
 
 ```bash
 https://api-challenge-o4pbdfca4a-uc.a.run.app/swagger-ui.html
 ```
 
+#### API Swagger
+
+:file_folder: [Microservice Open API specification](./swagger/api.yml)
+
+[URI Swagger API](https://swagger-currency-exchange-xfrmmz5d4a-uc.a.run.app/) :mag_right:
+
+#### Postman Collection
+
+![POSTMAN](./API-CHALLENGE.json)
+
 ## By Alvaro Aguinaga :peru:
+
+### References
+
+  * [SDK GCloud](https://cloud.google.com/sdk/docs/install-sdk?hl=es-419)
+  * [WebFlux Reactive](https://howtodoinjava.com/spring-webflux/spring-webflux-tutorial/)
+  * [Test Unit](https://medium.com/@BPandey/writing-unit-test-in-reactive-spring-boot-application-32b8878e2f57)
+  * [Open API 3](https://springdoc.org/)
