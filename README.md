@@ -96,9 +96,9 @@ https://api-challenge-o4pbdfca4a-uc.a.run.app/swagger-ui.html
 
 #### Import Postman Collection
 
-:file_folder:  ![POSTMAN_ENVIRONMENT](.CLOUD.postman_environment.json)
+:file_folder:  [POSTMAN_ENVIRONMENT](.CLOUD.postman_environment.json)
 
-:file_folder:  ![POSTMAN_COLLECTION](./API-CHALLENGE.postman_collection.json)
+:file_folder:  [POSTMAN_COLLECTION](./API-CHALLENGE.postman_collection.json)
 
 ## By Alvaro Aguinaga :peru:
 
