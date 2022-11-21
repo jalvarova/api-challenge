@@ -1,0 +1,212 @@
+{
+	"info": {
+		"_postman_id": "255953c9-9ee6-473d-b454-dcd58a930030",
+		"name": "API-CHALLENGE",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "PROCESS_CHAMPIONSHIP",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let responseData = JSON.parse(responseBody);",
+							"pm.globals.set(\"CHAMPIONSHIP\",responseData.championshipId);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"country\": \"Peru\",\n    \"name\": \"atp-world-tour\",\n    \"typeChampionship\": \"MALE\",\n    \"watchTv\": \"Direct TV\",\n    \"players\": [\n        {\n            \"document\": \"47082983\",\n            \"name\": \"Alvaro Aguinaga\",\n            \"skill\": 45,\n            \"speed\": 70,\n            \"strength\": 90,\n            \"country\": \"Peru\",\n            \"gender\": \"M\",\n            \"age\": 30\n        },\n        {\n            \"document\": \"47082904\",\n            \"name\": \"Diego Aguinaga\",\n            \"skill\": 75,\n            \"speed\": 80,\n            \"strength\": 50,\n            \"country\": \"Peru\",\n            \"gender\": \"M\",\n            \"age\": 33\n        },\n        {\n            \"document\": \"47082905\",\n            \"name\": \"gonzalo Aguinaga\",\n            \"skill\": 78,\n            \"speed\": 95,\n            \"strength\": 40,\n            \"country\": \"Peru\",\n            \"gender\": \"M\",\n            \"age\": 28\n        },\n        {\n            \"document\": \"47082901\",\n            \"name\": \"Carlos Orellana\",\n            \"skill\": 67,\n            \"speed\": 60,\n            \"strength\": 70,\n            \"country\": \"Peru\",\n            \"gender\": \"M\",\n            \"age\": 34\n        },\n        {\n            \"document\": \"47082603\",\n            \"name\": \"Carlos Aguinaga\",\n            \"skill\": 85,\n            \"speed\": 60,\n            \"strength\": 76,\n            \"country\": \"Peru\",\n            \"gender\": \"M\",\n            \"age\": 41\n        },\n        {\n            \"document\": \"47081903\",\n            \"name\": \"Junior Aguinaga\",\n            \"skill\": 43,\n            \"speed\": 99,\n            \"strength\": 70,\n            \"country\": \"Peru\",\n            \"gender\": \"M\",\n            \"age\": 19\n        },\n        {\n            \"document\": \"47012903\",\n            \"name\": \"Jaime Aguinaga\",\n            \"skill\": 80,\n            \"speed\": 50,\n            \"strength\": 64,\n            \"country\": \"Peru\",\n            \"gender\": \"M\",\n            \"age\": 48\n        },\n        {\n            \"document\": \"47242903\",\n            \"name\": \"Andres Aguinaga\",\n            \"skill\": 90,\n            \"speed\": 85,\n            \"strength\": 89,\n            \"country\": \"Peru\",\n            \"gender\": \"M\",\n            \"age\": 30\n        }\n    ]\n}"
+				},
+				"url": {
+					"raw": "{{URL_LOCAL}}/api/v1/challenge/championships",
+					"host": [
+						"{{URL_LOCAL}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"challenge",
+						"championships"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET_CHAMPIONSHIP",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{URL_API}}/api/v1/challenge/championships/{{CHAMPIONSHIP}}",
+					"host": [
+						"{{URL_API}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"challenge",
+						"championships",
+						"{{CHAMPIONSHIP}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SEARCH",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{URL_API}}/api/v1/challenge/championships/search?name=atp-world-tour&type=M&limit=5&page=0",
+					"host": [
+						"{{URL_API}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"challenge",
+						"championships",
+						"search"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "atp-world-tour"
+						},
+						{
+							"key": "type",
+							"value": "M"
+						},
+						{
+							"key": "limit",
+							"value": "5"
+						},
+						{
+							"key": "page",
+							"value": "0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PLAYERS",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{URL_API}}/api/v1/challenge/championships/players",
+					"host": [
+						"{{URL_API}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"challenge",
+						"championships",
+						"players"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "MATCHES",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{URL_API}}/api/v1/challenge/championships/{{CHAMPIONSHIP}}/matches",
+					"host": [
+						"{{URL_API}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"challenge",
+						"championships",
+						"{{CHAMPIONSHIP}}",
+						"matches"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "METRICS",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL_API}}/metrics",
+					"host": [
+						"{{URL_API}}"
+					],
+					"path": [
+						"metrics"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "HEALTH",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL_API}}/health",
+					"host": [
+						"{{URL_API}}"
+					],
+					"path": [
+						"health"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

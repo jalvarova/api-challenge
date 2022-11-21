@@ -92,13 +92,13 @@ https://api-challenge-o4pbdfca4a-uc.a.run.app/swagger-ui.html
 
 #### API Swagger
 
-:file_folder: [Microservice Open API specification](./swagger/api.yml)
-
 [URI Swagger API](https://api-challenge-o4pbdfca4a-uc.a.run.app/swagger-ui.html) :mag_right:
 
-#### Postman Collection
+#### Import Postman Collection
 
-![POSTMAN](./API-CHALLENGE.json)
+:file_folder:  ![POSTMAN_ENVIRONMENT](.CLOUD.postman_environment.json)
+
+:file_folder:  ![POSTMAN_COLLECTION](./API-CHALLENGE.postman_collection.json)
 
 ## By Alvaro Aguinaga :peru:
 
