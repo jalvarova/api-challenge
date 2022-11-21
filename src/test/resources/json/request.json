@@ -1,0 +1,88 @@
+{
+  "country": "Peru",
+  "name": "atp-world-tour",
+  "typeChampionship": "MALE",
+  "watchTv": "Direct TV",
+  "players": [
+    {
+      "document": "47082983",
+      "name": "Alvaro Aguinaga",
+      "skill": 45,
+      "speed": 70,
+      "strength": 90,
+      "country": "Peru",
+      "gender": "M",
+      "age": 30
+    },
+    {
+      "document": "47082904",
+      "name": "Diego Aguinaga",
+      "skill": 75,
+      "speed": 80,
+      "strength": 50,
+      "country": "Peru",
+      "gender": "M",
+      "age": 33
+    },
+    {
+      "document": "47082905",
+      "name": "gonzalo Aguinaga",
+      "skill": 78,
+      "speed": 95,
+      "strength": 40,
+      "country": "Peru",
+      "gender": "M",
+      "age": 28
+    },
+    {
+      "document": "47082901",
+      "name": "Carlos Orellana",
+      "skill": 67,
+      "speed": 60,
+      "strength": 70,
+      "country": "Peru",
+      "gender": "M",
+      "age": 34
+    },
+    {
+      "document": "47082603",
+      "name": "Carlos Aguinaga",
+      "skill": 85,
+      "speed": 60,
+      "strength": 76,
+      "country": "Peru",
+      "gender": "M",
+      "age": 41
+    },
+    {
+      "document": "47081903",
+      "name": "Junior Aguinaga",
+      "skill": 43,
+      "speed": 99,
+      "strength": 70,
+      "country": "Peru",
+      "gender": "M",
+      "age": 19
+    },
+    {
+      "document": "47012903",
+      "name": "Jaime Aguinaga",
+      "skill": 80,
+      "speed": 50,
+      "strength": 64,
+      "country": "Peru",
+      "gender": "M",
+      "age": 48
+    },
+    {
+      "document": "47242903",
+      "name": "Andres Aguinaga",
+      "skill": 90,
+      "speed": 85,
+      "strength": 89,
+      "country": "Peru",
+      "gender": "M",
+      "age": 30
+    }
+  ]
+}
