@@ -94,7 +94,7 @@ https://api-challenge-o4pbdfca4a-uc.a.run.app/swagger-ui.html
 
 :file_folder: [Microservice Open API specification](./swagger/api.yml)
 
-[URI Swagger API](https://swagger-currency-exchange-xfrmmz5d4a-uc.a.run.app/) :mag_right:
+[URI Swagger API](https://api-challenge-o4pbdfca4a-uc.a.run.app/swagger-ui.html) :mag_right:
 
 #### Postman Collection
 
